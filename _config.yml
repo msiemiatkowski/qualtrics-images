@@ -1,0 +1,4 @@
+# GitHub Pages builds this site with Jekyll; index.html lists the files in images/.
+title: Qualtrics images
+exclude:
+  - README.md

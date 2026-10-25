@@ -1,0 +1,74 @@
+---
+layout: null
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Qualtrics images</title>
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+  <header class="top">
+    <div class="wrap">
+      <h1>Qualtrics images</h1>
+      <p class="lede">Everything in this site's <code>images</code> folder, each with a direct link you can paste into Qualtrics.</p>
+      <div class="toolbar">
+        <a class="btn primary" id="add-images" href="https://github.com/" target="_blank" rel="noopener">Add images</a>
+        <input id="filter" type="search" placeholder="Filter by file or folder name" aria-label="Filter images" autocomplete="off">
+      </div>
+      <div class="toolbar">
+        <span class="count" id="count" aria-live="polite"></span>
+        <button class="btn" type="button" id="copy-all">Copy all links</button>
+        <button class="btn" type="button" id="download-csv">Download CSV</button>
+        <button class="btn" type="button" id="copy-preload">Copy preload code</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap" id="gallery"></main>
+
+  <section class="wrap help">
+    <h2>How to</h2>
+    <details>
+      <summary>Add images</summary>
+      <ol>
+        <li>Click <strong>Add images</strong> (sign in to GitHub if asked).</li>
+        <li>Drag image files, or a whole folder, onto the GitHub page. A dropped folder becomes a sub-folder here.</li>
+        <li>Click <strong>Commit changes</strong>.</li>
+        <li>Wait about a minute, then refresh this page. The new images show up with their links.</li>
+      </ol>
+      <p>Links are case-sensitive and change if a file is renamed or moved, so once a survey uses a link, leave that file where it is. Plain names (letters, numbers, <code>-</code>, <code>_</code>, <code>.</code>) are safest. Names starting with <code>_</code> are not published.</p>
+    </details>
+    <details>
+      <summary>Show an image in a Qualtrics question</summary>
+      <p>Click <strong>Copy HTML</strong> under the image, open the question text in the Rich Content Editor, switch to the HTML (Source) view and paste. Or click <strong>Copy link</strong> and use the link anywhere Qualtrics takes an image URL, such as Loop &amp; Merge fields or embedded data.</p>
+    </details>
+    <details>
+      <summary>Make images appear instantly (preloading)</summary>
+      <p>Click <strong>Copy preload code</strong>. It covers the images listed right now, so filter first if a survey needs only some of them. Paste it into the JavaScript of a question that comes before the images, such as the consent or instructions page. Participants' browsers then download the images in the background while they read.</p>
+    </details>
+    <details>
+      <summary>Remove or rename an image</summary>
+      <p>Open the <a id="manage-images" href="https://github.com/" target="_blank" rel="noopener">images folder on GitHub</a>, click the file, then use the <strong>&middot;&middot;&middot;</strong> menu to delete it, or the pencil to rename it, and commit. Surveys that still use the old link will show a broken image.</p>
+    </details>
+  </section>
+
+  <footer class="wrap foot">Served by GitHub Pages. Changes go live about a minute after each commit.</footer>
+
+  <!-- Filled in by GitHub Pages (Jekyll) on every build: one entry per file in images/. -->
+  <ul id="file-list" hidden>
+  {%- for file in site.static_files -%}
+    {%- assign top = file.path | slice: 0, 8 -%}
+    {%- if top == "/images/" %}
+    <li data-path="{{ file.path | escape }}"></li>
+    {%- endif -%}
+  {%- endfor %}
+  </ul>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="assets/app.js"></script>
+</body>
+</html>
